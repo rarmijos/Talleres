@@ -1,3 +1,17 @@
+const firebaseConfig = {
+    apiKey: "AIzaSyBOwh38pY_Fum4N5Mb86EBG8sJppzZvQRo",
+    authDomain: "bloc-videojuegos-825d7.firebaseapp.com",
+    projectId: "bloc-videojuegos-825d7",
+    storageBucket: "bloc-videojuegos-825d7.firebasestorage.app",
+    messagingSenderId: "1022480906907",
+    appId: "1:1022480906907:web:a3f3aa87645fe81953643e"
+};
+
+//Iniciar Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+
 // ABRIR Y CERRAR CART
 const cartIcon = document.querySelector("#cart-icon");
 const cart = document.querySelector("#cart");
