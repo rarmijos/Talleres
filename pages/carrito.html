@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Electronics Space</title>
-    
+    <!--IMPORTAR FLOWBITE-->
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+
+    <!--FAVICON-->
+    <link rel="icon" href="imagenes/play.svg">
+
+    <!--IMPORTAR LOS ICONOS DE BOOTSTRAP-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <title>Bloc Videojuegos</title>
+
     <link rel="icon" href="/imagenes/play.svg" type="image/x-icon">
     <!-- box icons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -14,43 +25,58 @@
     <!-- styles -->
     <link rel="stylesheet" href="/css/carrito.css">
 </head>
+
 <body>
-    <!-- HEADER -->
-    <header>
-        <!-- NAVEGACION -->
-        <div class="nav container">
-            <a href="#" class="logo"><span>E</span>Space</a>
-            <a href="#" class="logopng"><img src="/imagenes/play.svg" alt=""></a>
-            
-            <!-- CART ICONS -->
-            <i class="bx bx-shopping-bag" id="cart-icon"></i>
+<header>
 
-            <!-- CART -->
-            <div class="cart" id="cart">
-                <h2 class="cart-title ">Tu carrito</h2>
+        <!--BARRA DE NAVEGACION-->
 
-            
+        <nav class="barra-navegacion">
 
-                <!-- CONTENT -->
-                <div class="cart-content">
+            <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
+                <a href="/index.html" class="flex items-center space-x-3 rtl:space-x-reverse">
+                    <i class="bi bi-playstation logo-icono animacion-icono"></i>
+                    <span
+                        class="self-center text-2xl font-semibold whitespace-nowrap text-white animacion-icono">Games</span>
+                </a>
+                <div class="flex items-center space-x-6 rtl:space-x-reverse">
+                    <a class="enlace-navegacion text-sm hover:underline  animacion-icono">Roy - Bryan</a>
+                    <a href="/pages/login.html"
+                        class="enlace-navegacion text-sm text-blue-400 hover:underline iniciar-sesion">Iniciar
+                        sesión</a>
 
-
+                    <!-- CART ICONS -->
+                    <i class="bx bx-shopping-bag" id="cart-icon"></i>
+                    
                 </div>
+                <div class="nav container">
+                    
 
-                <!-- TOTAL -->
-                <div class="total">
-                    <div class="total-title">Total</div>
-                    <div class="total-price">$0</div>
+                    <!-- CART -->
+                    <div class="cart" id="cart">
+                        <h2 class="cart-title ">Tu carrito</h2>
+
+                        <!-- CONTENT -->
+                        <div class="cart-content">
+
+                        </div>
+
+                        <!-- TOTAL -->
+                        <div class="total">
+                            <div class="total-title">Total</div>
+                            <div class="total-price">$0</div>
+                        </div>
+
+                        <!-- BUY BOTTON -->
+                        <button type="button" class="btn-buy">Comprar Ahora!</button>
+
+                        <!-- CART CLOSE -->
+                        <i class="bx bx-x" id="cart-close"></i>
+                    </div>
                 </div>
-
-                <!-- BUY BOTTON -->
-                <button type="button" class="btn-buy">Comprar Ahora!</button>
-
-                <!-- CART CLOSE -->
-                <i class="bx bx-x" id="cart-close"></i>
             </div>
-        </div>
-    </header>
+        </nav>
+</header>
 
     <!-- SHOP SECTION -->
     <section class="shop container">
@@ -60,91 +86,145 @@
         <div class="shop-content">
 
             <!-- BOX 1 -->
-                <div class="product-box" class="Iphone15ProMax">
-                    <img src="/imagenes/carrito/spidermancover.jpg" alt="" class="product-img">
-                    <a href="iphone15promax/index.html" class="product-link">
-                        <span class="product-title">IPhone 15 Pro Max 256 GB Gris Titan</span>
-                    </a><br>    
-                    <span class="product-price">$1</span>
-                    <i class="bx bx-shopping-bag add-cart styleaddcartshop"></i>
-                </div>
+            <div class="product-box" class="Iphone15ProMax">
+                <img src="/imagenes/carrito/spidermancover.jpg" alt="" class="product-img">
+                <a href="iphone15promax/index.html" class="product-link">
+                    <span class="product-title">Marvel-Spiderman 2</span>
+                </a><br>
+                <span class="product-price">$69.99</span>
+                <i class="bx bx-shopping-bag add-cart styleaddcartshop"></i>
+            </div>
 
 
-                <!-- BOX 2 -->
-                <div class="product-box">
-                    <img src="/imagenes/carrito/elden.jpg" alt="" class="product-img">
-                    <a href="applewatchseries7/index.html" class="product-link">
-                        <span class="product-title">Apple Watch Series 7</span>
-                    </a><br>
-                    <span class="product-price">$8,990</span>
-                    <i class="bx bx-shopping-bag add-cart styleaddcartshop"></i>
-                </div>
+            <!-- BOX 2 -->
+            <div class="product-box">
+                <img src="/imagenes/carrito/elden.jpg" alt="" class="product-img">
+                <a href="applewatchseries7/index.html" class="product-link">
+                    <span class="product-title">Elden Ring</span>
+                </a><br>
+                <span class="product-price">$69.99</span>
+                <i class="bx bx-shopping-bag add-cart styleaddcartshop"></i>
+            </div>
 
-                    <!-- BOX 3 -->
-                    <div class="product-box">
-                        <img src="/imagenes/carrito/god.jpg" alt="" class="product-img">
-                        <a href="mandoxboxone/index.html" class="product-link">
-                            <span class="product-title">Mando Xbox One</span>
-                        </a><br>
-                        <span class="product-price">$1,500</span>
-                        <i class="bx bx-shopping-bag add-cart styleaddcartshop"></i>
-                    </div>
+            <!-- BOX 3 -->
+            <div class="product-box">
+                <img src="/imagenes/carrito/god.jpg" alt="" class="product-img">
+                <a href="mandoxboxone/index.html" class="product-link">
+                    <span class="product-title">God of War Ragnarok</span>
+                </a><br>
+                <span class="product-price">$69.99</span>
+                <i class="bx bx-shopping-bag add-cart styleaddcartshop"></i>
+            </div>
 
-                        <!-- BOX 4 -->
-                        <div class="product-box">
-                            <img src="/imagenes/carrito/resident.jpg" alt="" class="product-img">
-                            <a href="samsungs24ultra/index.html" class="product-link">
-                                <span class="product-title">Samsung Galaxy S24 Ultra 512 GB</span>
-                            </a><br>
-                            <span class="product-price">$25,499</span>
-                            <i class="bx bx-shopping-bag add-cart styleaddcartshop"></i>
-                        </div>
-                        
-                            <!-- BOX 5 -->
-                            <div class="product-box">
-                                <img src="/imagenes/carrito/gta.jpg" alt="" class="product-img">
-                                <a href="samsungwatch5/index.html" class="product-link">
-                                    <span class="product-title">Samsung Galaxy Watch 5 Pro</span>
-                                </a><br>
-                                <span class="product-price">$9,999</span>
-                                <i class="bx bx-shopping-bag add-cart styleaddcartshop"></i>
-                            </div>
+            <!-- BOX 4 -->
+            <div class="product-box">
+                <img src="/imagenes/carrito/resident.jpg" alt="" class="product-img">
+                <a href="samsungs24ultra/index.html" class="product-link">
+                    <span class="product-title">Resident Evil 4</span>
+                </a><br>
+                <span class="product-price">$39.99</span>
+                <i class="bx bx-shopping-bag add-cart styleaddcartshop"></i>
+            </div>
 
-                                <!-- BOX 6 -->
-                                <div class="product-box">
-                                    <img src="/imagenes/carrito/crash.jpg" alt="" class="product-img">
-                                    <a href="mandops5/index.html" class="product-link">
-                                        <span class="product-title">Mando PS5</span>
-                                    </a><br>
-                                    <span class="product-price">$1,349</span>
-                                    <i class="bx bx-shopping-bag add-cart styleaddcartshop"></i>
-                                </div>
+            <!-- BOX 5 -->
+            <div class="product-box">
+                <img src="/imagenes/carrito/hollow.jpg" alt="" class="product-img">
+                <a href="samsungwatch5/index.html" class="product-link">
+                    <span class="product-title">Hollow Knight</span>
+                </a><br>
+                <span class="product-price">$14.99</span>
+                <i class="bx bx-shopping-bag add-cart styleaddcartshop"></i>
+            </div>
 
-                                    <!-- BOX 7 -->
-                                    <div class="product-box">
-                                        <img src="/imagenes/carrito/mortal.jpg" alt="" class="product-img">
-                                        <a href="tecladosteelseries/index.html" class="product-link">
-                                            <span class="product-title">Teclado Steelseries Apex Pro</span>
-                                        </a> <br>
-                                        <span class="product-price">$4,016</span>
-                                        <i class="bx bx-shopping-bag add-cart styleaddcartshop"></i>
-                                    </div>
+            <!-- BOX 6 -->
+            <div class="product-box">
+                <img src="/imagenes/carrito/crash.jpg" alt="" class="product-img">
+                <a href="mandops5/index.html" class="product-link">
+                    <span class="product-title">Crash Bandicoot 4: About Time</span>
+                </a><br>
+                <span class="product-price">$59.99</span>
+                <i class="bx bx-shopping-bag add-cart styleaddcartshop"></i>
+            </div>
 
-                                        <!-- BOX 8 -->
-                                        <div class="product-box">
-                                            <img src="/imagenes/carrito/shadow.jpg" alt="" class="product-img">
-                                            <a href="mousegpro/index.html" class="product-link">
-                                                <span class="product-title">Mouse Logitech G Pro</span>
-                                            </a><br>
-                                            <span class="product-price">$2,199</span>
-                                            <i class="bx bx-shopping-bag add-cart styleaddcartshop"></i>
-                                        </div>
+            <!-- BOX 7 -->
+            <div class="product-box">
+                <img src="/imagenes/carrito/mortal.jpg" alt="" class="product-img">
+                <a href="tecladosteelseries/index.html" class="product-link">
+                    <span class="product-title">Mortal Kombat 1</span>
+                </a> <br>
+                <span class="product-price">$49.99</span>
+                <i class="bx bx-shopping-bag add-cart styleaddcartshop"></i>
+            </div>
+
+            <!-- BOX 8 -->
+            <div class="product-box">
+                <img src="/imagenes/carrito/fifa.jpg" alt="" class="product-img">
+                <a href="mousegpro/index.html" class="product-link">
+                    <span class="product-title">FC26</span>
+                </a><br>
+                <span class="product-price">$99.99</span>
+                <i class="bx bx-shopping-bag add-cart styleaddcartshop"></i>
+            </div>
+
+            <!-- BOX 9 -->
+            <div class="product-box">
+                <img src="/imagenes/carrito/horizont.jpg" alt="" class="product-img">
+                <a href="mousegpro/index.html" class="product-link">
+                    <span class="product-title">Horizon Forbidden West</span>
+                </a><br>
+                <span class="product-price">$49.99</span>
+                <i class="bx bx-shopping-bag add-cart styleaddcartshop"></i>
+            </div>
+
+            <!-- BOX 10 -->
+            <div class="product-box">
+                <img src="/imagenes/carrito/red.jpg" alt="" class="product-img">
+                <a href="mousegpro/index.html" class="product-link">
+                    <span class="product-title">Red Dead Redemption</span>
+                </a><br>
+                <span class="product-price">$49.99</span>
+                <i class="bx bx-shopping-bag add-cart styleaddcartshop"></i>
+            </div>
+
+            <!-- BOX 11 -->
+            <div class="product-box">
+                <img src="/imagenes/carrito/tekken.jpg" alt="" class="product-img">
+                <a href="mousegpro/index.html" class="product-link">
+                    <span class="product-title">TEKKEN 7</span>
+                </a><br>
+                <span class="product-price">$49.99</span>
+                <i class="bx bx-shopping-bag add-cart styleaddcartshop"></i>
+            </div>
+
+            <!-- BOX 12 -->
+            <div class="product-box">
+                <img src="/imagenes/carrito/silent.jpg" alt="" class="product-img">
+                <a href="mousegpro/index.html" class="product-link">
+                    <span class="product-title">SILENT HILL 2</span>
+                </a><br>
+                <span class="product-price">$69.99</span>
+                <i class="bx bx-shopping-bag add-cart styleaddcartshop"></i>
+            </div>
 
         </div>
 
     </section>
 
-    <!-- link js -->
-    <script src="/js/carrito.js"></script>
+    <!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+<script src="/js/carrito.js"></script>
+
+    <!--FOOTER-->
+
+<footer class="pie-pagina">
+    <div class="contenedor-pie">
+    <span class="texto-pie">
+    © 2025 <a href="index.html" class="enlace-pie">R&B</a>. Derechos Reservados
+    </span>
+    </div>
+</footer>
+
 </body>
+
 </html>
