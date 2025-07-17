@@ -1,0 +1,261 @@
+.logo{
+    color: white;
+    font-size: 20px;
+}
+
+.fila-horizontal {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem; /* Espacio entre recuadros */
+    justify-content: center; /* Centrar horizontalmente */
+    flex-wrap: wrap; /* Para que se acomoden si no caben */
+}
+
+.imagen{
+    background-color: black;
+}
+
+.texto{
+    text-align: justify;
+}
+
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #D1D5DB;
+    margin-top: 24px;
+    text-align: left;
+    margin-bottom: 200px;
+}
+
+.celda {
+    border: 1px solid #D1D5DB;
+    padding: 8px 16px;
+}
+
+.video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.barra-navegacion {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 95%;              
+    margin: 0 auto;          
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 1rem;     
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 50;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    margin-left: 50px;
+}
+
+.enlace-navegacion {
+    color: white;
+    text-decoration: none;
+}
+
+.logo-icono {
+    font-size: 2rem;        
+    color: white;
+    transition: transform 0.3s ease;
+}
+
+.animacion-icono:hover {
+    transform: scale(1.2) rotate(-5deg);
+}
+
+.iniciar-sesion{
+    font-size: 20px;
+    margin-left: 20px;
+    color: rgb(238, 54, 255);
+    font:bold;
+}
+
+.pie-pagina {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 2rem);
+    background-color: rgba(13, 19, 37, 0.575); 
+    color: #f1f1f1;
+    border-radius: 1rem;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    margin: 0 auto;
+    z-index: 50;
+}
+
+.contenedor-pie {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.texto-pie {
+    font-size: 0.875rem;
+    opacity: 0.9;
+}
+
+.enlace-pie {
+    color: #64ff4f;
+    text-decoration: none;
+}
+
+.enlace-pie:hover {
+    text-decoration: underline;
+    color: #956fff;
+}
+
+.boton{
+    margin-bottom: 100px;
+}
+
+
+/* Estilos del formulario de registro con nuevas clases */
+
+.bloque-registro .formulario-registro {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 350px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  margin-left: auto;
+  margin-top: 25px;
+  margin-bottom: 50px;
+}
+
+.bloque-registro .encabezado-formulario {
+  font-size: 28px;
+  color: royalblue;
+  font-weight: 600;
+  letter-spacing: -1px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+}
+
+.bloque-registro .encabezado-formulario::before,
+.bloque-registro .encabezado-formulario::after {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  left: 0px;
+  background-color: royalblue;
+}
+
+.bloque-registro .encabezado-formulario::before {
+  width: 18px;
+  height: 18px;
+}
+
+.bloque-registro .encabezado-formulario::after {
+  width: 18px;
+  height: 18px;
+  animation: latido 1s linear infinite;
+}
+
+.bloque-registro .texto-informativo,
+.bloque-registro .texto-login {
+  color: rgba(88, 87, 87, 0.822);
+  font-size: 14px;
+}
+
+.bloque-registro .texto-login {
+  text-align: center;
+}
+
+.bloque-registro .texto-login a {
+  color: royalblue;
+}
+
+.bloque-registro .texto-login a:hover {
+  text-decoration: underline royalblue;
+}
+
+.bloque-registro .grupo-campos {
+  display: flex;
+  width: 100%;
+  gap: 6px;
+}
+
+.bloque-registro .formulario-registro label {
+  position: relative;
+}
+
+.bloque-registro .formulario-registro label .campo {
+  width: 100%;
+  padding: 10px 10px 20px 10px;
+  outline: 0;
+  border: 1px solid rgba(105, 105, 105, 0.397);
+  border-radius: 10px;
+}
+
+.bloque-registro .formulario-registro label .campo + span {
+  position: absolute;
+  left: 10px;
+  top: 15px;
+  color: grey;
+  font-size: 0.9em;
+  cursor: text;
+  transition: 0.3s ease;
+}
+
+.bloque-registro .formulario-registro label .campo:placeholder-shown + span {
+  top: 15px;
+  font-size: 0.9em;
+}
+
+.bloque-registro .formulario-registro label .campo:focus + span,
+.bloque-registro .formulario-registro label .campo:valid + span {
+  top: 30px;
+  font-size: 0.7em;
+  font-weight: 600;
+}
+
+.bloque-registro .formulario-registro label .campo:valid + span {
+  color: green;
+}
+
+.bloque-registro .boton-registro {
+  border: none;
+  outline: none;
+  background-color: royalblue;
+  padding: 10px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+  transform: .3s ease;
+}
+
+.bloque-registro .boton-registro:hover {
+  background-color: rgb(56, 90, 194);
+}
+
+@keyframes latido {
+  from {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
