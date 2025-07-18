@@ -19,8 +19,11 @@
     <title>Registro</title>
 </head>
 <body>
-    <!--BARRA DE NAVEGACION-->
 
+<!-- Contenedor para la imagen de fondo -->
+    <div class="background-image"></div>
+
+    <!--BARRA DE NAVEGACION-->
 
 <nav class="barra-navegacion">
 
@@ -46,54 +49,60 @@
 
     <div class="grupo-campos">
       <label>
-        <input required placeholder="" type="text" class="campo" />
+        <input required placeholder="" type="text" class="campo" id="nombre" />
         <span>Nombre</span>
       </label>
+      <p id="errorNombre" class="texto-error"></p>
 
       <label>
-        <input required placeholder="" type="text" class="campo" />
+        <input required placeholder="" type="text" class="campo" id="apellido"/>
         <span>Apellido</span>
       </label>
+      <p id="errorApellido" class="texto-error"></p>
     </div>
 
     <label>
-      <input required placeholder="" type="text" class="campo" />
+      <input required placeholder="" type="text" class="campo" id="nombreUsuario" />
       <span>Nombre de usuario</span>
     </label>
+    <p id="errorUsuario" class="texto-error"></p>
 
     <label>
-      <input required placeholder="" type="email" class="campo" />
+      <input required placeholder="" type="email" class="campo" id="correo" />
       <span>Email</span>
     </label>
+    <p id="errorEmail" class="texto-error"></p>
 
     <label>
-      <input required placeholder="" type="password" class="campo" />
+      <input required placeholder="" type="password" class="campo" id="contrasena" />
       <span>Contraseña</span>
     </label>
+    <p id="errorPassword" class="texto-error"></p>
 
     <label>
-      <input required placeholder="" type="password" class="campo" />
+      <input required placeholder="" type="password" class="campo" id="confirmarContrasena" />
       <span>Confirmar contraseña</span>
     </label>
+    <p id="errorConfirmPassword" class="texto-error"></p>
 
     <label>
-      <input required placeholder="" type="number" class="campo" />
+      <input required placeholder="" type="number" class="campo" id="edad" />
       <span>Edad</span>
     </label>
+    <p id="errorEdad" class="texto-error"></p>
 
     <label>
-      <input required placeholder="" type="tel" class="campo" />
+      <input required placeholder="" type="tel" class="campo" id="telefono"/>
       <span>Número de teléfono</span>
     </label>
+    <p id="errorTelefono" class="texto-error"></p>
 
-    <button class="boton-registro">Registrarse</button>
+    <button type="button" class="boton-registro" id="btnRegistrar">Registrarse</button>
     <p class="texto-login">
       ¿Ya formas parte de nosotros? <a href="/pages/login.html">Inicia sesión</a>
     </p>
   </form>
 </div>
-
-
 
 <div id="imprimir"></div>
 
@@ -116,6 +125,7 @@
 </table>
 
 <script src="/js/dinamico.js"></script>
+<script src="/js/validarRegistro.js"></script>
 
 <!--FOOTER-->
 
