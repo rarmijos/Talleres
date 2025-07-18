@@ -7,153 +7,147 @@ const firebaseConfig = {
     appId: "1:1022480906907:web:a3f3aa87645fe81953643e"
 };
 
+// INICIAR FIREBASE
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-// Función para guardar producto en Firebase
-async function guardarProductoEnFirebase(nombre, precio) {
-    try {
-        await db.collection("carrito").add({ nombre, precio });
-        console.log("Producto guardado en Firebase:", nombre, precio);
-    } catch (error) {
-        console.error("Error al guardar en Firebase:", error);
-    }
-}
+let itemsAdded = [];
 
-// ABRIR Y CERRAR CARRITO
+// AGREGAR PRODUCTO
+const agregarProducto = async (nombre, precio, imgSrc) => {
+    try {
+        await db.collection("carrito").add({ nombre, precio, imgSrc });
+        await cargarCarrito();
+    } catch (error) {
+        console.error("Error al agregar el producto", error);
+    }
+};
+
+// CARGAR CARRITO
+const cargarCarrito = async () => {
+    const lista = document.querySelector('.cart-content');
+    lista.innerHTML = "";
+    itemsAdded = [];
+
+    let total = 0;
+    const productos = await db.collection("carrito").get();
+
+    productos.forEach(doc => {
+        const item = doc.data();
+        total += item.precio;
+
+        const div = document.createElement("div");
+        div.classList.add("cart-box");
+        div.innerHTML = `
+            <img src="${item.imgSrc || ''}" alt="" class="cart-img">
+            <div class="detail-box">
+                <div class="cart-product-title">${item.nombre}</div>
+                <div class="cart-price">$${item.precio}</div>
+                <input type="number" value="1" class="cart-quantity">
+            </div>
+            <i class="bx bxs-trash-alt cart-remove"></i>
+        `;
+
+        div.querySelector(".cart-remove").addEventListener("click", async () => {
+            try {
+                await db.collection("carrito").doc(doc.id).delete();
+                await cargarCarrito();
+            } catch (error) {
+                console.error("No se puede eliminar", error);
+            }
+        });
+
+        lista.appendChild(div);
+        itemsAdded.push({ title: item.nombre, price: item.precio });
+    });
+
+    const totalCompra = document.querySelector('.total-price');
+    totalCompra.textContent = "$" + total.toFixed(2);
+};
+
+// BOTONES DE PRODUCTOS
+const botonesAgregar = document.querySelectorAll(".add-cart");
+botonesAgregar.forEach(btn => {
+    btn.addEventListener("click", async () => {
+        const producto = btn.parentElement;
+        const nombre = producto.querySelector(".product-title").textContent;
+        const precioTexto = producto.querySelector(".product-price").textContent;
+        const precio = parseFloat(precioTexto.replace("$", "").replace(",", ""));
+        const imgSrc = producto.querySelector(".product-img").src;
+
+        if (itemsAdded.find(el => el.title === nombre)) {
+            alert("Este artículo ya está en el carrito");
+            return;
+        }
+
+        await agregarProducto(nombre, precio, imgSrc);
+        btn.disabled = true;
+        btn.textContent = "Agregado";
+    });
+});
+
+// CAMBIAR CANTIDAD
+const cambiarCantidad = () => {
+    const cantidades = document.querySelectorAll(".cart-quantity");
+    cantidades.forEach(input => {
+        input.addEventListener("change", () => {
+            if (isNaN(input.value) || input.value < 1) {
+                input.value = 1;
+            }
+            input.value = Math.floor(input.value);
+            actualizarTotal();
+        });
+    });
+};
+
+// ACTUALIZAR TOTAL
+const actualizarTotal = () => {
+    const cajas = document.querySelectorAll(".cart-box");
+    let total = 0;
+
+    cajas.forEach(caja => {
+        const precio = parseFloat(caja.querySelector(".cart-price").textContent.replace("$", ""));
+        const cantidad = parseInt(caja.querySelector(".cart-quantity").value);
+        total += precio * cantidad;
+    });
+
+    const totalCompra = document.querySelector(".total-price");
+    totalCompra.textContent = "$" + total.toFixed(2);
+};
+
+// COMPRAR
+const botonComprar = document.querySelector(".btn-buy");
+botonComprar.addEventListener("click", async () => {
+    if (itemsAdded.length === 0) {
+        alert("¡El carrito está vacío!");
+        return;
+    }
+
+    try {
+        const snapshot = await db.collection("carrito").get();
+        const batch = db.batch();
+        snapshot.forEach(doc => batch.delete(doc.ref));
+        await batch.commit();
+
+        document.querySelector(".cart-content").innerHTML = "";
+        alert("¡Gracias por su compra!");
+        itemsAdded = [];
+        actualizarTotal();
+    } catch (error) {
+        console.error("Error al finalizar la compra", error);
+        alert("Hubo un problema al finalizar la compra.");
+    }
+});
+
+// MOSTRAR Y OCULTAR CARRITO
 const cartIcon = document.querySelector("#cart-icon");
 const cart = document.querySelector("#cart");
 const closeCart = document.querySelector("#cart-close");
 
-cartIcon.addEventListener("click", () => {
-    cart.classList.toggle("active");
-});
+cartIcon.addEventListener("click", () => cart.classList.toggle("active"));
+closeCart.addEventListener("click", () => cart.classList.remove("active"));
 
-closeCart.addEventListener("click", () => {
-    cart.classList.remove("active");
-});
-
-// INICIAR CUANDO EL DOCUMENTO ESTÉ LISTO
-if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", start);
-} else {
-    start();
-}
-
-function start() {
-    addEvents();
-}
-
-function update() {
-    addEvents();
-    updateTotal();
-}
-
-function addEvents() {
-    let cartRemove_btns = document.querySelectorAll(".cart-remove");
-    cartRemove_btns.forEach((btn) => {
-        btn.addEventListener("click", handle_removeCartItem);
-    });
-
-    let cartQuantity_inputs = document.querySelectorAll(".cart-quantity");
-    cartQuantity_inputs.forEach((input) => {
-        input.addEventListener("change", handle_changeItemQuantity);
-    });
-
-    let addCart_btns = document.querySelectorAll(".add-cart");
-    addCart_btns.forEach((btn) => {
-        btn.addEventListener("click", handle_addCartItem);
-    });
-}
-
-const buy_btn = document.querySelector(".btn-buy");
-buy_btn.addEventListener("click", handle_buyOrden);
-
-let itemsAdded = [];
-
-function handle_addCartItem() {
-    let product = this.parentElement;
-    let title = product.querySelector(".product-title").innerHTML;
-    let priceText = product.querySelector(".product-price").textContent;
-    let price = parseFloat(priceText.replace("$", "").replace(",", ""));
-    let imgSrc = product.querySelector(".product-img").src;
-
-    let newToAdd = { title, price, imgSrc };
-
-    if (itemsAdded.find((el) => el.title === newToAdd.title)) {
-        alert("Este Artículo Ya Existe");
-        return;
-    } else {
-        itemsAdded.push(newToAdd);
-    }
-
-    let carBoxElement = cartBoxComponent(title, price, imgSrc);
-    let newNode = document.createElement("div");
-    newNode.innerHTML = carBoxElement;
-    const cartContent = cart.querySelector(".cart-content");
-    cartContent.appendChild(newNode);
-
-    // Guardar en Firebase
-    guardarProductoEnFirebase(title, price);
-
-    cart.classList.add("active");
-    update();
-}
-
-function handle_removeCartItem() {
-    this.parentElement.remove();
-    itemsAdded = itemsAdded.filter(
-        (el) => el.title !== this.parentElement.querySelector(".cart-product-title").innerHTML
-    );
-    update();
-}
-
-function handle_changeItemQuantity() {
-    if (isNaN(this.value) || this.value < 1) {
-        this.value = 1;
-    }
-    this.value = Math.floor(this.value);
-    update();
-}
-
-function handle_buyOrden() {
-    if (itemsAdded.length <= 0) {
-        alert("¡Aún no hay ningún pedido para realizar!\nPor favor haga un pedido primero");
-        return;
-    }
-    const cartContent = cart.querySelector(".cart-content");
-    cartContent.innerHTML = "";
-    alert("Su pedido se realizó exitosamente");
-    itemsAdded = [];
-    update();
-}
-
-function updateTotal() {
-    let cartBoxes = document.querySelectorAll('.cart-box');
-    const totalElement = cart.querySelector(".total-price");
-    let total = 0;
-
-    cartBoxes.forEach((cartBox) => {
-        let priceElement = cartBox.querySelector(".cart-price");
-        let price = parseFloat(priceElement.innerHTML.replace("$", ""));
-        let quantity = cartBox.querySelector(".cart-quantity").value;
-        total += price * quantity;
-    });
-
-    total = total.toFixed(2);
-    totalElement.innerHTML = "$" + total;
-}
-
-function cartBoxComponent(title, price, imgSrc) {
-    return `
-    <div class="cart-box">
-        <img src="${imgSrc}" alt="" class="cart-img">
-        <div class="detail-box">
-            <div class="cart-product-title">${title}</div>
-            <div class="cart-price">$${price}</div>
-            <input type="number" value="1" class="cart-quantity">
-        </div>
-        <i class="bx bxs-trash-alt cart-remove"></i>
-    </div>
-    `;
-}
+// INICIAR
+window.onload = () => {
+    cargarCarrito();
+};
