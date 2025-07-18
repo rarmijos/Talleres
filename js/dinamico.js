@@ -1,16 +1,16 @@
-let btnImprimir = document.getElementById('btnImprimir');
+let btnRegistrar = document.getElementById('btnRegistrar');
 let tabla = document.getElementById('tabla');
 
 const imprimirMensaje = () => {
 
-    let nombre = document.getElementById('floating_email').value;
-    let apellido = document.getElementById('floating_password').value;
-    let nombreUsuario = document.getElementById('floating_password1').value;
-    let correo = document.getElementById('floating_repeat_password').value;
-    let contrasena = document.getElementById('floating_first_name').value;
-    let confirmarContrasena = document.getElementById('floating_last_name').value;
-    let edad = document.getElementById('floating_age').value;
-    let telefono = document.getElementById('floating_phone').value;
+    let nombre = document.getElementById('nombre').value;
+    let apellido = document.getElementById('apellido').value;
+    let nombreUsuario = document.getElementById('nombreUsuario').value;
+    let correo = document.getElementById('correo').value;
+    let contrasena = document.getElementById('contrasena').value;
+    let confirmarContrasena = document.getElementById('confirmarContrasena').value;
+    let edad = document.getElementById('edad').value;
+    let telefono = document.getElementById('telefono').value;
 
     let nuevaFila = document.createElement('tr');
     nuevaFila.innerHTML = `
@@ -29,4 +29,4 @@ const imprimirMensaje = () => {
     document.querySelector('form').reset();
 };
 
-btnImprimir.onclick = imprimirMensaje;
+btnRegistrar.onclick = imprimirMensaje;
