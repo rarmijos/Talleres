@@ -172,8 +172,8 @@ function showMessage(selector) {
 	});
 
 	// Ocultar el grupo completo después de 3 segundos
-	TweenMax.to(group, 0.3, {
-		delay: 3,
+	TweenMax.to(group, 0.1, {
+		delay: 1,
 		autoAlpha: 0
 	});
 }
